@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 namespace LcrSimulator
@@ -61,6 +59,7 @@ namespace LcrSimulator
             set => SetProperty(ref _error, value);
         }
 
+        #region DataValidation
         public string this[string columnName]
         {
             get
@@ -80,21 +79,25 @@ namespace LcrSimulator
                 return error;
             }
         }
-
-        private bool ValidateNumberOfPlayers()
-        {
-            return _numberOfPlayers > 2;
-        }
-
-        private bool ValidateNumberOfGames()
-        {
-            return _numberOfGames > 0;
-        }
-
-        public bool ValidateData()
-        {
-            return ValidateNumberOfGames() && ValidateNumberOfPlayers();
-        }
-
+        /// <summary>
+        /// Validates the number of players
+        /// is at least 3
+        /// </summary>
+        /// <returns>a boolean indicating if data is valid</returns>
+        private bool ValidateNumberOfPlayers() => _numberOfPlayers > 2;
+        /// <summary>
+        /// Valiodates the number of games
+        /// is at least 1
+        /// </summary>
+        /// <returns>a boolean indicating if data is valid</returns>
+        private bool ValidateNumberOfGames() =>  _numberOfGames > 0;
+        /// <summary>
+        /// Checks the values of ValidateNumberOfPlayers
+        /// and ValidateNumberOfGames
+        /// </summary>
+        /// <returns>Returns true if both are valid</returns>
+        public bool ValidateData() => ValidateNumberOfGames() && ValidateNumberOfPlayers();
+        
+        #endregion
     }
 }

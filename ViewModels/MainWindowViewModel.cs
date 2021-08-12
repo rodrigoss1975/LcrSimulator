@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeftCenterRight;
+using System;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -47,10 +48,12 @@ namespace LcrSimulator
 
         public void RunCommandExecute(object parameter)
         {
-            var param = (LcrSimulation)parameter;
-            param.ShortestGame = 10;
-            param.LongestGame = 10;
-            param.AverageGameLength = 10;
+            LcrSimulation param = (LcrSimulation)parameter;
+            Simulator simulator = new Simulator();
+            GameStats res = simulator.RunSimulation(param.NumberOfPlayers, param.NumberOfGames);
+            param.ShortestGame = res.ShortestGame;
+            param.LongestGame = res.LongestGame;
+            param.AverageGameLength = res.AverageGameLength;
         }
 
         public class RelayCommand<T> : ICommand
