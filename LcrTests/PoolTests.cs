@@ -6,6 +6,9 @@ namespace LcrTests
     [TestClass]
     public class PoolTests
     {
+        /// <summary>
+        /// Tests Pool class
+        /// </summary>
         [TestMethod]
         public void ReceiveChipShouldIncreaseChipsByOne()
         {

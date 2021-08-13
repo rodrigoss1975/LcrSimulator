@@ -2,6 +2,9 @@
 
 namespace LcrTests
 {
+    /// <summary>
+    /// Mocks Die class
+    /// </summary>
     public class DieMock : IDie
     {
         private char _result;

@@ -1,6 +1,6 @@
 ﻿using LeftCenterRight.Interfaces;
-using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace LeftCenterRight
@@ -44,6 +44,7 @@ namespace LeftCenterRight
         /// <returns>The number of rounds played util a player wins</returns>
         public int Play(int numberOfPlayers)
         {
+            if (numberOfPlayers < 3) throw new ValidationException("Number of plyers should be 3 or more.");
             IDie die = Die.Instance;
             init(numberOfPlayers);
             int rounds = 0;

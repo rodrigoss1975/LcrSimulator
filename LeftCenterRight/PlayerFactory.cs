@@ -7,9 +7,6 @@ namespace LeftCenterRight
     /// </summary>
     public class PlayerFactory : IPlayerFactory
     {
-        public IPlayer Create()
-        {
-            return new Player();
-        }
+        public IPlayer Create() => new Player();
     }
 }
