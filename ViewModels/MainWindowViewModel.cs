@@ -5,26 +5,31 @@ using System.Windows.Input;
 
 namespace LcrSimulator
 {
+    /// <summary>
+    /// ViewModel used by the Main Window
+    /// </summary>
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private LcrSimulation _lcrSimulation;
+        /// <summary>
+        /// Desfault constructor which
+        /// is required to bind wihouth 
+        /// codebihind
+        /// </summary>
         public MainWindowViewModel()
-        {
-            
+        {   
             LcrSimulation = new LcrSimulation() { NumberOfPlayers = 3, NumberOfGames = 1};
             RunCommand = new RelayCommand<object>(RunCommandExecute, RunCommandCanExecute);
         }
-
         public LcrSimulation LcrSimulation
         {
             get => _lcrSimulation;
             set => _lcrSimulation = value;
         }
-
-        private ICommand _runCommand;
-
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #region Command
+        private ICommand _runCommand;
         public ICommand RunCommand
         {
             get
@@ -40,12 +45,22 @@ namespace LcrSimulator
             }
         }
 
+        /// <summary>
+        /// Checks if the binding data is valid
+        /// in order to run the LCR simulation
+        /// </summary>
+        /// <param name="parameter">Binding parameter</param>
+        /// <returns></returns>
         private bool RunCommandCanExecute(object parameter)
         {
             // Only allow execute if parameter has data and ValidateData is true
             return parameter != null && ((LcrSimulation)parameter).ValidateData();
         }
 
+        /// <summary>
+        /// Run Simulation
+        /// </summary>
+        /// <param name="parameter">Binding parameter</param>
         public void RunCommandExecute(object parameter)
         {
             LcrSimulation param = (LcrSimulation)parameter;
@@ -56,6 +71,11 @@ namespace LcrSimulator
             param.AverageGameLength = res.AverageGameLength;
         }
 
+
+        /// <summary>
+        /// Generic RelayCommand Implementation
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         public class RelayCommand<T> : ICommand
         {
             #region Fields
@@ -127,5 +147,6 @@ namespace LcrSimulator
 
             #endregion
         }
+        #endregion
     }
 }

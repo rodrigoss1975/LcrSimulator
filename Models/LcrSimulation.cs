@@ -4,6 +4,10 @@ using System.Runtime.CompilerServices;
 
 namespace LcrSimulator
 {
+    /// <summary>
+    /// Model used by the viemodel to transfer
+    /// data to and from the LCR game simulator
+    /// </summary>
     public class LcrSimulation : INotifyPropertyChanged, IDataErrorInfo
     {
         private string _error;
@@ -28,6 +32,7 @@ namespace LcrSimulator
         }
         #endregion
 
+        #region Properties
         public int NumberOfPlayers 
         {
             get => _numberOfPlayers; 
@@ -58,6 +63,8 @@ namespace LcrSimulator
             get => _error;
             set => SetProperty(ref _error, value);
         }
+
+        #endregion
 
         #region DataValidation
         public string this[string columnName]
